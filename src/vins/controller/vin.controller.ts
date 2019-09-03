@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nes
 import { AuthGuard } from '../../auth/guard/auth.guard';
 import { VinService } from '../service/vin.service';
 import { VinDto } from '../dto/vin.dto';
+import { ObjectID } from 'typeorm';
 
 
 @Controller('vins')

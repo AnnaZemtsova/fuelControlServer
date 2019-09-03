@@ -6,4 +6,5 @@ export class VinDto {
     readonly idUser: string;
 
     readonly vinNumber: string;
+
 }

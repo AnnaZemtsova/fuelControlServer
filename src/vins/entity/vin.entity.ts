@@ -19,4 +19,5 @@ export class Vin {
     @Column()
     vinNumber: string;
 
+
 }

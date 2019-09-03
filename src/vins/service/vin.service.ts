@@ -17,6 +17,7 @@ import { AuthGuard } from '../../auth/guard/auth.guard';
 import { VinDto } from '../dto/vin.dto';
 import { User } from '../../users/entity/user.entity';
 import { UserRepository } from '../../users/repository/user.repository';
+import { Equal, ObjectID } from 'typeorm';
 
 
 const mongoose  = require('mongoose');
@@ -41,25 +42,25 @@ export class VinService {
 
     async updateVin(vinDto: VinDto): Promise<Vin>{
         const vin = new Vin();
-        vin.user = await this.userRepository.findOne(vinDto.idUser);
+        vin.user = await this.userRepository.findOne({where: `_id = '${vinDto.idUser}'`});
         vin.vinNumber = vinDto.vinNumber;
-
+        console.log(vin);
         try{
             await this.vinRepository.update({_id: vinDto._id}, vin);
-            return await this.vinRepository.findOne({_id: vinDto._id});
+            return await this.vinRepository.findOne({where: `_id = '${vinDto._id}'`});
         }catch(e){
-            return null;
+            throw new InternalServerErrorException('Can`t update vin');
         }
     }
 
-    async deleteVin(id: string){
+    async deleteVin(id: any){
         try{
-            let vin = await this.vinRepository.findOne({_id: id});
+            let vin = await this.vinRepository.findOne({where: `_id = '${id}'`});
             let idVin = vin._id;
-            await this.vinRepository.delete({_id: id});
+            await this.vinRepository.delete(id);
             return idVin;
         }catch(e){
-            return null;
+            throw new InternalServerErrorException('Can`t delete vin');
         }
     }
 
