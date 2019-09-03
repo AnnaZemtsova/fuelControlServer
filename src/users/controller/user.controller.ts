@@ -1,10 +1,11 @@
-import {Body, Controller, Post} from '@nestjs/common';
-import {UserService} from "./user.service";
-import {UserDto} from "./user.dto";
+import { Body, Controller, Header, Post } from '@nestjs/common';
+import {UserService} from "../service/user.service";
+import {UserDto} from "../dto/user.dto";
+import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
 
 
 @Controller('users')
-export class UsersController {
+export class UserController {
     constructor(private userService: UserService){}
 
     @Post('/signin')

@@ -1,4 +1,4 @@
-import { User } from '../users/user.entity';
+import { User } from '../users/entity/user.entity';
 
 export const common = {
     secret: 'mysecretkey',

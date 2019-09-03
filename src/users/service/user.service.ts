@@ -1,11 +1,11 @@
 import {BadRequestException, Inject, Injectable, InternalServerErrorException} from "@nestjs/common";
-import {User} from "./user.entity";
-import {UserDto} from "./user.dto";
+import {User} from "../entity/user.entity";
+import {UserDto} from "../dto/user.dto";
 import {Model} from 'mongoose';
 import * as jwt from 'jsonwebtoken';
 import {InjectRepository} from "@nestjs/typeorm";
-import {UserRepository} from "./user.repository";
-import { common } from '../config/config';
+import {UserRepository} from "../repository/user.repository";
+import { common } from '../../config/config';
 
 const bcrypt = require('bcryptjs');
 const mongoose  = require('mongoose');
